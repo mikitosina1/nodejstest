@@ -1,0 +1,19 @@
+{
+  "name": "nodejstest",
+  "version": "1.0.0",
+  "description": "just project to try nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "testall"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/mikitosina1"
+  },
+  "keywords": [
+    "nodejs",
+    "test"
+  ],
+  "author": "mikitosina1",
+  "license": "ISC"
+}
