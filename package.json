@@ -2,18 +2,28 @@
   "name": "nodejstest",
   "version": "1.0.0",
   "description": "just project to try nodejs",
-  "main": "index.js",
+  "main": "public/index.js",
   "scripts": {
-    "test": "testall"
+    "runindex": "node public/index.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
-    "url": "github.com/mikitosina1"
+    "url": "github.com/mikitosina1/nodejstest"
   },
   "keywords": [
     "nodejs",
     "test"
   ],
   "author": "mikitosina1",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
 }
