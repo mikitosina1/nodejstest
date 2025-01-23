@@ -1,14 +1,12 @@
-const os = require('os');
-// console.log(os);
-const { MongoClient } = require('mongodb');
-const uri = 'mongodb://mongodb:27017';
-const client = new MongoClient(uri);
+const express = require('express');
+const app = express();
+// console.log(app);
 
-(async () => {
-	try {
-		await client.connect();
-		console.log('Connected to MongoDB!');
-	} finally {
-		await client.close();
-	}
-})();
+app.get('/', (req, res) => {
+	res.send('Hello, DDEV and Express!');
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+	console.log(`Server is running on http://localhost:${PORT}`);
+});
