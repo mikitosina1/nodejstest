@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const connectDB = require('./config/db');
 const todoRoutes = require('./routes/todoRoutes');
+const { getTodos } = require('./controllers/todoController');
 
 dotenv.config();
 
@@ -12,9 +13,15 @@ const startServer = async () => {
 		console.log('MongoDB connection established');
 
 		const app = express();
+
+		app.set('view engine', 'ejs');
+		app.set('views', './views');
+
 		app.use(bodyParser.json());
 
 		app.use('/api/todos', todoRoutes);
+
+		app.get('/', getTodos);
 
 		const PORT = process.env.PORT || 3000;
 		app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
