@@ -1,16 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Todo List</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
 </head>
 <body>
 <h1>Todo List</h1>
+
+<form action="/" method="POST">
+    <input type="text" name="title" placeholder="Title" required>
+    <textarea name="description" placeholder="Description" required></textarea>
+    <button type="submit">Add Todo</button>
+</form>
+
 <ul>
-	<% todos.forEach(todo => { %>
-	<li><%= todo.title %> - <%= todo.completed ? 'Completed' : 'Pending' %></li>
-	<% }) %>
+    <% todos.forEach(todo => { %>
+        <li class="<%= todo.completed ? 'completed' : '' %>">
+            <h3><%= todo.title %></h3>
+            <p><%= todo.description %></p>
+
+            <form action="/api/todos/<%= todo._id %>" method="POST">
+                <input type="hidden" name="completed" value="<%= !todo.completed %>">
+                <button type="submit"><%= todo.completed ? 'Mark as Incomplete' : 'Mark as Completed' %></button>
+            </form>
+        </li>
+    <% }) %>
 </ul>
 </body>
 </html>
