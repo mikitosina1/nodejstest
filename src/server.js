@@ -3,6 +3,8 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const connectDB = require('./config/db');
 const todoRoutes = require('./routes/todoRoutes');
+const path = require('path');
+const Todo = require('./models/Todo');
 
 dotenv.config();
 
@@ -14,7 +16,7 @@ const startServer = async () => {
 
 		app.set('view engine', 'ejs');
 		app.set('views', './views');
-		app.use(bodyParser.urlencoded({ extended: true }));  // Для обработки форм
+		app.use(bodyParser.urlencoded({ extended: true }));
 		app.use(bodyParser.json());
 
 		app.use('/api/todos', todoRoutes);
