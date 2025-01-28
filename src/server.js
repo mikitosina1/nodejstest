@@ -3,7 +3,6 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const connectDB = require('./config/db');
 const todoRoutes = require('./routes/todoRoutes');
-const path = require('path');
 const Todo = require('./models/Todo');
 
 dotenv.config();
