@@ -3,7 +3,7 @@ const Todo = require('../models/Todo');
 // Get all todos
 const getTodos = async (req, res) => {
 	try {
-		const todos = await Todo.find();
+		let todos = await Todo.find();
 		res.render('index', { todos });
 	} catch (error) {
 		res.status(500).json({ message: 'Ошибка получения todos' });
@@ -12,24 +12,24 @@ const getTodos = async (req, res) => {
 
 // Add new
 const addTodo = async (req, res) => {
-	const title = req.body.title;
-	const description = req.body.description;
-	const todo = new Todo({"title": title, "description": description});
+	let title = req.body.title;
+	let description = req.body.description;
+	let todo = new Todo({"title": title, "description": description});
 	await todo.save();
 	res.status(201).json(todo);
 };
 
 // Update
 const updateTodo = async (req, res) => {
-	const { id } = req.params;
-	const { completed } = req.body;
-	const todo = await Todo.findByIdAndUpdate(id, { completed }, { new: true });
+	let { id } = req.body;
+	let { completed } = req.body;
+	let todo = await Todo.findByIdAndUpdate(id, { completed }, { new: true });
 	res.json(todo);
 };
 
 // Delete
 const deleteTodo = async (req, res) => {
-	const { id } = req.params;
+	let { id } = req.body;
 	await Todo.findByIdAndDelete(id);
 	res.json({ message: 'Todo deleted' });
 };
