@@ -12,8 +12,9 @@ const getTodos = async (req, res) => {
 
 // Add new
 const addTodo = async (req, res) => {
-	const { title } = req.body;
-	const todo = new Todo({ title });
+	const title = req.body.title;
+	const description = req.body.description;
+	const todo = new Todo({"title": title, "description": description});
 	await todo.save();
 	res.status(201).json(todo);
 };

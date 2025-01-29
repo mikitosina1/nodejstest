@@ -18,7 +18,7 @@ const startServer = async () => {
 		app.use(bodyParser.urlencoded({ extended: true }));
 		app.use(bodyParser.json());
 
-		app.use('/api/todos', todoRoutes);
+		app.use('/', todoRoutes);
 
 		app.get('/', async (req, res) => {
 			const todos = await Todo.find();

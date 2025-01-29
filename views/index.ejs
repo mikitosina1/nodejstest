@@ -14,6 +14,7 @@
 <h1>Todo List</h1>
 
 <form action="/" method="POST">
+    <input type="hidden" name="method" value="addTodo">
     <input type="text" name="title" placeholder="Title" required>
     <textarea name="description" placeholder="Description" required></textarea>
     <button type="submit">Add Todo</button>
@@ -25,9 +26,16 @@
             <h3><%= todo.title %></h3>
             <p><%= todo.description %></p>
 
-            <form action="/api/todos/<%= todo._id %>" method="POST">
+            <form action="/<%= todo._id %>" method="POST">
+                <input type="hidden" name="method" value="updateTodo">
+                <input type="hidden" name="id" value="<%= todo._id %>">
                 <input type="hidden" name="completed" value="<%= !todo.completed %>">
                 <button type="submit"><%= todo.completed ? 'Mark as Incomplete' : 'Mark as Completed' %></button>
+            </form>
+            <form action="/<%= todo._id %>" method="POST">
+                <input type="hidden" name="method" value="deleteTodo">
+                <input type="hidden" name="id" value="<%= todo._id %>">
+                <button type="submit">Delete</button>
             </form>
         </li>
     <% }) %>
