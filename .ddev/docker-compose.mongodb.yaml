@@ -1,5 +1,20 @@
 version: '3.6'
 services:
+  node:
+    image: node:18
+    container_name: ddev-${DDEV_SITENAME}-node
+    command: sh -c "npm install && node --inspect=0.0.0.0:9229 server.js"
+    volumes:
+      - .:/app
+    working_dir: /app
+    ports:
+      - "3000:3000"
+      - "9230:9229"
+    depends_on:
+      - mongodb
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/todos
+
   mongodb:
     image: mongo:6.0
     container_name: ddev-${DDEV_SITENAME}-mongodb
@@ -7,5 +22,8 @@ services:
       - "27017:27017"
     volumes:
       - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=todos
+
 volumes:
   mongodb_data:
